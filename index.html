@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="removeBtn-iPhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="iPhone" class="form-control text-center" value="1">
+                           <button id="addBtn-iPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="iPhone-price">1219</span> </h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="removeBtn-case" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input type="text" id="case" class="form-control text-center" value="1">
+                           <button id="addBtn-case" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="case-price">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subtotal-price">1,278</span> </h5>
+                        <h5>$ <span id="tax">0</span> </h5>
+                        <h5>$ <span id="total">1,278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <script>
+
+      
+      //Plus button activity 
+       function plusButton(id1,price,id2,id3,tax,id4,id5) {
+          const addItem=document.getElementById(id1).value;
+          let addItemNumber=parseFloat(addItem);
+          addItemNumber++;//increment
+          document.getElementById(id1).value=addItemNumber; //assign same value input id iPhone
+         
+         
+          //const changngValue=parseFloat(document.getElementById().innerText);
+          const iPhonePrice = price; //1219; //fixed value of iphone
+         //console.log(iPhonePrice);
+
+          const addItemChangingPrice=iPhonePrice*addItemNumber; //increasing value
+         
+
+          //console.log(addItemChangingPrice);
+
+          document.getElementById(id2).innerText=addItemChangingPrice; //assign value in span id iPhone-price
+      
+          //console.log(document.getElementById(id2).innerText);
+
+          /********************subtotal calculation*****************************/
+          
+          // const subtotalAmount=document.getElementById(id3).innerText;
+          // const subtotalAmountNumber=parseFloat(subtotalAmount);
+
+          // const currentSubtotalAmount=addItemChangingPrice+subtotalAmountNumber;
+         
+          const firstItemTotalPrice = document.getElementById("iPhone-price").innerText;
+          const firstItemTotalPriceNumber=parseFloat(firstItemTotalPrice);
+
+          const secondItemTotalPrice=document.getElementById("case-price").innerText;
+          const secondItemTotalPriceNumber=parseFloat(secondItemTotalPrice);
+
+          const totalSubtotal=firstItemTotalPriceNumber+secondItemTotalPriceNumber; 
+          document.getElementById(id3).innerText=totalSubtotal;
+          
+          
+          //document.getElementById(id3).innerText=addItemChangingPrice;//individually change.not accepted
+
+       /******************************tax***************************************/
+
+         const itemTax =tax;  // 0.05; //fixed value
+         const itemTotalTax=totalSubtotal*itemTax;
+          
+         document.getElementById(id4).innerText=itemTotalTax.toFixed(2);
+
+
+      /*********************************Total**********************************************/
+
+       const itemTotal =totalSubtotal+itemTotalTax;     
+       //const itemTotal=addItemChangingPrice+itemTotalTax;
+       document.getElementById(id5).innerText=itemTotal.toFixed(2);
+
+
+
+
+
+
+
+       }
+
+
+
+
+
+       /******************************1st item add btn function start  *************************/
+      document.getElementById("addBtn-iPhone").addEventListener("click",function () {
+      
+         plusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total");
+         
+         
+         // const addiPhone=document.getElementById("iPhone").value;
+         // let addiPhoneNumber=parseFloat(addiPhone);
+         // addiPhoneNumber++;//increment
+         // document.getElementById("iPhone").value=addiPhoneNumber; //assign same value input id iPhone
+      
+         // //console.log(addiPhoneNumber);
+
+         
+         // const iPhonePrice = 1219; //fixed value of iphone
+         // //console.log(iPhonePrice);
+
+         // const addiPhoneChangingPrice=iPhonePrice*addiPhoneNumber; //increasing value
+         
+
+         // //console.log(addiPhoneChangingPrice);
+
+         // document.getElementById("iPhone-price").innerText=addiPhoneChangingPrice; //assign value in span id iPhone-price
+         
+
+         // /********************subtotal calculation*****************************/
+            
+         // //const subtotalAmount=document.getElementById("subtotal-price").innerText; //gets subtotal value
+         // //const subtotalAmountNumber=parseFloat(subtotalAmount);//make it to number from string
+
+         // // const addCurrentPrice=document.getElementById("iPhone-price").innerText;
+         // // const addCurrentPriceNumber = parseFloat(addCurrentPrice);
+         // // console.log(addCurrentPriceNumber);
+
+         // //const currentSubtotalAmount=addiPhoneChangingPrice + subtotalAmountNumber; //adding subtotal amount with previous added value
+         // //console.log(currentSubtotalAmount);
+
+         // document.getElementById("subtotal-price").innerText=addiPhoneChangingPrice//currentSubtotalAmount; //assign value in subtotal span id  
+
+         // /******************************tax***************************************/
+
+         // const iPhoneTax = 0.05; //fixed value
+         // const iPhoneTotalTax = addiPhoneChangingPrice*iPhoneTax;
+         // //const iPhoneTotalPrice=iPhonePrice+iPhoneTotalTax;
+
+         // document.getElementById("tax").innerText=iPhoneTotalTax;
+
+
+         // /*********************************Total**********************************************/
+
+         // const iPhoneTotal=addiPhoneChangingPrice+iPhoneTotalTax;
+         // document.getElementById("total").innerText=iPhoneTotal;
+
+      
+
+
+      })   
+      /**************1st item add btn function end  ***************************/
+
+
+
+      //minus button activity
+      function minusButton(id1,price,id2,id3,tax,id4,id5) {
+         const removeItem=document.getElementById(id1).value;
+         let removeItemNumber=parseFloat(removeItem);
+         removeItemNumber--;//decrement
+         if ( removeItemNumber>=0) {      
+            document.getElementById(id1).value=removeItemNumber; //assign same value       
+
+            //console.log(removeItemNumber);
+
+
+            const itemPrice = price;    // 1219; //fixed value of iphone
+            const removeItemChangingPrice=itemPrice*removeItemNumber; //decresing value
+
+            //console.log(removeItemChangingPrice);
+            
+            document.getElementById(id2).innerText=removeItemChangingPrice; //assign value in span id iPhone-price
+
+
+            /********************subtotal calculation*****************************/
+               
+            //const subtotalAmount=document.getElementById("subtotal-price").innerText; //gets subtotal value
+            //const subtotalAmountNumber=parseFloat(subtotalAmount);//make it to number from string
+
+            // const removeCurrentPrice=document.getElementById("iPhone-price").innerText;
+            // const removeCurrentPriceNumber = parseFloat(removeCurrentPrice);
+            // //console.log(currentSubtotalAmount);
+
+            //const currentSubtotalAmount=subtotalAmountNumber-removeiPhoneChangingPrice; //adding subtotal amount with previous removed/decreased value
+            
+            //console.log(currentSubtotalAmount);
+
+            //const subtotalValue = document.getElementById(id3).innerText;
+            //const subtotalValueNumber = parseFloat(subtotalValue);
+
+            //const currentSubtotalValue = subtotalValueNumber-removeItemChangingPrice;
+
+
+            const firstItemTotalPrice = document.getElementById("iPhone-price").innerText;
+            const firstItemTotalPriceNumber=parseFloat(firstItemTotalPrice);
+
+            const secondItemTotalPrice=document.getElementById("case-price").innerText;
+            const secondItemTotalPriceNumber=parseFloat(secondItemTotalPrice);
+
+            const totalSubtotal=firstItemTotalPriceNumber+secondItemTotalPriceNumber;
+            
+            document.getElementById(id3).innerText=totalSubtotal;
+
+            
+            
+            //document.getElementById(id3).innerText=removeItemChangingPrice; //assign value in subtotal span id.individual change,not accepted  
+
+
+            /******************************tax***************************************/
+
+            const itemTax =tax;  // 0.05; //fixed value
+            const itemTotalTax=totalSubtotal*itemTax;
+            
+            
+
+            document.getElementById(id4).innerText=itemTotalTax.toFixed(2);
+               
+            
+            
+
+            /*********************************Total**********************************************/
+
+            const itemTotal=totalSubtotal+itemTotalTax;   
+            document.getElementById(id5).innerText=itemTotal.toFixed(2);
+         }//if end
+
+      }
+
+
+
+      /*************1st item remove btn function start  ***************************/
+      document.getElementById("removeBtn-iPhone").addEventListener("click",function () {
+         
+         minusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total");
+         
+         
+         /**************************************************************************************
+         const removeiPhone=document.getElementById("iPhone").value;
+         let removeiPhoneNumber=parseFloat(removeiPhone);
+         --removeiPhoneNumber;//decrement
+
+         if (removeiPhoneNumber>=0) {
+            document.getElementById("iPhone").value=removeiPhoneNumber; //assign same value
+         
+                
+
+         //console.log(removeiPhoneNumber);
+
+
+         const iPhonePrice = 1219; //fixed value of iphone
+         const removeiPhoneChangingPrice=iPhonePrice*removeiPhoneNumber; //decresing value
+
+         console.log(removeiPhoneChangingPrice);
+         
+         document.getElementById("iPhone-price").innerText=removeiPhoneChangingPrice; //assign value in span id iPhone-price
+
+
+         //*******************subtotal calculation****************************
+            
+         //const subtotalAmount=document.getElementById("subtotal-price").innerText; //gets subtotal value
+         //const subtotalAmountNumber=parseFloat(subtotalAmount);//make it to number from string
+
+         // const removeCurrentPrice=document.getElementById("iPhone-price").innerText;
+         // const removeCurrentPriceNumber = parseFloat(removeCurrentPrice);
+         // //console.log(currentSubtotalAmount);
+
+         //const currentSubtotalAmount=subtotalAmountNumber-removeiPhoneChangingPrice; //adding subtotal amount with previous removed/decreased value
+         
+         //console.log(currentSubtotalAmount);
+         
+         document.getElementById("subtotal-price").innerText=removeiPhoneChangingPrice; //assign value in subtotal span id  
+
+
+         /*****************************tax*************************************
+
+         const iPhoneTax = 0.05; //fixed value
+         const iPhoneTotalTax = removeiPhoneChangingPrice*iPhoneTax;
+         //const iPhoneTotalPrice=iPhonePrice+iPhoneTotalTax;
+
+         document.getElementById("tax").innerText=iPhoneTotalTax;
+
+         /*********************************Total*****************************************
+
+         const iPhoneTotal=removeiPhoneChangingPrice+iPhoneTotalTax;
+         document.getElementById("total").innerText=iPhoneTotal;
+
+         
+         }//if end *************/  
+
+         
+
+
+
+      })
+      /**************1st item remove btn function end ***************************/
+
+/*****************************************************************************
+***************************************************************************
+************************************************************************************/
+
+      /****************2nd item add btn *******************/
+      document.getElementById("addBtn-case").addEventListener("click",function () {
+         plusButton("case",59,"case-price","subtotal-price",0,"tax","total");
+      })
+
+      /**************2nd item remove btn************************************/
+      document.getElementById("removeBtn-case").addEventListener("click",function () {
+         minusButton("case",59,"case-price","subtotal-price",0,"tax","total");
+      })
+
+
+
+      
+
+      
+
+      
+
+
+
+
+
+
+   </script>
+
+</body>
+
+</html>
