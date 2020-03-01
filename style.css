@@ -1,6 +1,9 @@
 body{
 	background: #fff;
 }
+#main{
+	display: block;
+}
 .cart{
 	margin: 100px 0;
 	background-color: #F6F5FA;;
@@ -52,4 +55,17 @@ body{
 	font-size: 19px;
 	background-color: #2FBE70;
 	border: none;
+}
+
+#thanks{
+	display: none;;
+}
+
+.anchor-text{
+	
+	color: black;
+}
+
+a:hover{
+	text-decoration: none;
 }

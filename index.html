@@ -12,7 +12,7 @@
 
 <body>
 
-   <section>
+   <section id="main">
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
@@ -71,12 +71,24 @@
                   </div>
                </div>
                <div class="col-md-12 pt-4 pb-4">
-                  <button type="button" class="btn btn-success check-out">Check Out</button>
+                  <button type="button" id="check-out-btn" class="btn btn-success check-out">Check Out</button>
                </div>
             </div>
          </div>
       </div>
    </section>
+
+   <div id="thanks" class="container bg-success">
+      <div class="row ">
+         <div class="col-md-12 text-center my-5 py-5">
+            <h2>Thanks for Purchase</h2>
+            <br>
+            <a class="anchor-text" href="">back to shopping cart again?</a>
+            
+         </div>
+         
+      </div>
+   </div>
 
    <script>
 
@@ -372,8 +384,14 @@
       
 
 
+      //check out button activity
+      document.getElementById("check-out-btn").addEventListener("click",function () {
+         
+         document.getElementById("main").style.display="none";
+         document.getElementById("thanks").style.display="block";
 
 
+      })
 
 
    </script>
