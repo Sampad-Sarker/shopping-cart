@@ -90,25 +90,26 @@
       </div>
    </div>
 
+
+   <!--------------------------- javascript start----------------------- -->
    <script>
 
       
-      //Plus button activity 
-       function plusButton(id1,price,id2,id3,tax,id4,id5) {
+       //Plus button activity 
+      function plusButton(id1,price,id2,id3,tax,id4,id5) {
           const addItem=document.getElementById(id1).value;
-          let addItemNumber=parseFloat(addItem);
+          let addItemNumber=parseFloat(addItem);  //constat can not change later,so let is used
           addItemNumber++;//increment
           document.getElementById(id1).value=addItemNumber; //assign same value input id iPhone
          
          
-          //const changngValue=parseFloat(document.getElementById().innerText);
-          const iPhonePrice = price; //1219; //fixed value of iphone
+         const iPhonePrice = price; //1219; //fixed value of iphone here price is1219,pass param
          //console.log(iPhonePrice);
 
-          const addItemChangingPrice=iPhonePrice*addItemNumber; //increasing value
+         const addItemChangingPrice=iPhonePrice*addItemNumber; //increasing value
          
-
-          //console.log(addItemChangingPrice);
+         
+            //console.log(addItemChangingPrice);
 
           document.getElementById(id2).innerText=addItemChangingPrice; //assign value in span id iPhone-price
       
@@ -116,44 +117,40 @@
 
           /********************subtotal calculation*****************************/
           
-          // const subtotalAmount=document.getElementById(id3).innerText;
-          // const subtotalAmountNumber=parseFloat(subtotalAmount);
-
-          // const currentSubtotalAmount=addItemChangingPrice+subtotalAmountNumber;
-         
+                 
           const firstItemTotalPrice = document.getElementById("iPhone-price").innerText;
-          const firstItemTotalPriceNumber=parseFloat(firstItemTotalPrice);
+          const firstItemTotalPriceNumber=parseFloat(firstItemTotalPrice); //iPhone value gets
 
           const secondItemTotalPrice=document.getElementById("case-price").innerText;
-          const secondItemTotalPriceNumber=parseFloat(secondItemTotalPrice);
+          const secondItemTotalPriceNumber=parseFloat(secondItemTotalPrice); //case value gets
 
-          const totalSubtotal=firstItemTotalPriceNumber+secondItemTotalPriceNumber; 
-          document.getElementById(id3).innerText=totalSubtotal;
+          const totalSubtotal=firstItemTotalPriceNumber+secondItemTotalPriceNumber; //subtotal
+          document.getElementById(id3).innerText=totalSubtotal; //assigns subtotal to subtotal span
           
           
           //document.getElementById(id3).innerText=addItemChangingPrice;//individually change.not accepted
 
-       /******************************tax***************************************/
+            /******************************tax***************************************/
 
-         const itemTax =tax;  // 0.05; //fixed value
-         const itemTotalTax=totalSubtotal*itemTax;
+            const itemTax =tax;   //fixed value like 0.05,pass param
+            const itemTotalTax=totalSubtotal*itemTax; //tax added on subtotal not individual
           
-         document.getElementById(id4).innerText=itemTotalTax.toFixed(2);
+            document.getElementById(id4).innerText=itemTotalTax.toFixed(2);//assign to tax span .2 decimal number
 
 
-      /*********************************Total**********************************************/
+            /*********************************Total**********************************************/
 
-       const itemTotal =totalSubtotal+itemTotalTax;     
-       //const itemTotal=addItemChangingPrice+itemTotalTax;
-       document.getElementById(id5).innerText=itemTotal.toFixed(2);
-
-
-
+            const itemTotal =totalSubtotal+itemTotalTax;     //total=subtotal+tax
+            
+            document.getElementById(id5).innerText=itemTotal.toFixed(2);//assign to total span. 2 decimal number
 
 
 
 
-       }
+
+
+
+      }
 
 
 
@@ -162,7 +159,8 @@
        /******************************1st item add btn function start  *************************/
       document.getElementById("addBtn-iPhone").addEventListener("click",function () {
       
-         plusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total");
+         plusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total"); /****no tax added,pass param if u want to add tax.
+         change param if  u want to change price(1219) and tax(0.05->5% or 0.10->10%)***/
          
          
          // const addiPhone=document.getElementById("iPhone").value;
@@ -222,40 +220,26 @@
 
       //minus button activity
       function minusButton(id1,price,id2,id3,tax,id4,id5) {
-         const removeItem=document.getElementById(id1).value;
+         const removeItem=document.getElementById(id1).value;//constat can not change later,so let is used
          let removeItemNumber=parseFloat(removeItem);
          removeItemNumber--;//decrement
-         if ( removeItemNumber>=0) {      
-            document.getElementById(id1).value=removeItemNumber; //assign same value       
+         if ( removeItemNumber>=0) {   //-1 or negative number not allowed     
+            document.getElementById(id1).value=removeItemNumber; //assign same value  input span     
 
             //console.log(removeItemNumber);
 
 
-            const itemPrice = price;    // 1219; //fixed value of iphone
+            const itemPrice = price;    // 1219; //fixed value of iphone.pass param to change value
             const removeItemChangingPrice=itemPrice*removeItemNumber; //decresing value
 
             //console.log(removeItemChangingPrice);
             
-            document.getElementById(id2).innerText=removeItemChangingPrice; //assign value in span id iPhone-price
+            document.getElementById(id2).innerText=removeItemChangingPrice; //assign value in span id
 
 
             /********************subtotal calculation*****************************/
                
-            //const subtotalAmount=document.getElementById("subtotal-price").innerText; //gets subtotal value
-            //const subtotalAmountNumber=parseFloat(subtotalAmount);//make it to number from string
-
-            // const removeCurrentPrice=document.getElementById("iPhone-price").innerText;
-            // const removeCurrentPriceNumber = parseFloat(removeCurrentPrice);
-            // //console.log(currentSubtotalAmount);
-
-            //const currentSubtotalAmount=subtotalAmountNumber-removeiPhoneChangingPrice; //adding subtotal amount with previous removed/decreased value
             
-            //console.log(currentSubtotalAmount);
-
-            //const subtotalValue = document.getElementById(id3).innerText;
-            //const subtotalValueNumber = parseFloat(subtotalValue);
-
-            //const currentSubtotalValue = subtotalValueNumber-removeItemChangingPrice;
 
 
             const firstItemTotalPrice = document.getElementById("iPhone-price").innerText;
@@ -275,20 +259,20 @@
 
             /******************************tax***************************************/
 
-            const itemTax =tax;  // 0.05; //fixed value
-            const itemTotalTax=totalSubtotal*itemTax;
+            const itemTax =tax;   //fixed value like 0.05.pass param to change tax percentage
+            const itemTotalTax=totalSubtotal*itemTax; //tax added on subtotal
             
             
 
-            document.getElementById(id4).innerText=itemTotalTax.toFixed(2);
+            document.getElementById(id4).innerText=itemTotalTax.toFixed(2);//assign to tax id.2 decimal number
                
             
             
 
             /*********************************Total**********************************************/
 
-            const itemTotal=totalSubtotal+itemTotalTax;   
-            document.getElementById(id5).innerText=itemTotal.toFixed(2);
+            const itemTotal=totalSubtotal+itemTotalTax;  //total 
+            document.getElementById(id5).innerText=itemTotal.toFixed(2);//assign to total id
          }//if end
 
       }
@@ -298,7 +282,8 @@
       /*************1st item remove btn function start  ***************************/
       document.getElementById("removeBtn-iPhone").addEventListener("click",function () {
          
-         minusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total");
+         minusButton("iPhone",1219,"iPhone-price","subtotal-price",0,"tax","total");/****no tax added,pass param if u want to add tax.
+         change param if  u want to change price(1219) and tax(0.05->5% or 0.10->10%)***/
          
          
          /**************************************************************************************
@@ -367,12 +352,14 @@
 
       /****************2nd item add btn *******************/
       document.getElementById("addBtn-case").addEventListener("click",function () {
-         plusButton("case",59,"case-price","subtotal-price",0,"tax","total");
+         plusButton("case",59,"case-price","subtotal-price",0,"tax","total"); /****no tax added,pass param if u want to add tax.
+         change param if  u want to change price(1219) and tax(0.05->5% or 0.10->10%)***/
       })
 
       /**************2nd item remove btn************************************/
       document.getElementById("removeBtn-case").addEventListener("click",function () {
-         minusButton("case",59,"case-price","subtotal-price",0,"tax","total");
+         minusButton("case",59,"case-price","subtotal-price",0,"tax","total");/****no tax added,pass param if u want to add tax.
+         change param if  u want to change price(1219) and tax(0.05->5% or 0.10->10%)***/
       })
 
 
@@ -387,8 +374,8 @@
       //check out button activity
       document.getElementById("check-out-btn").addEventListener("click",function () {
          
-         document.getElementById("main").style.display="none";
-         document.getElementById("thanks").style.display="block";
+         document.getElementById("main").style.display="none";  //hide
+         document.getElementById("thanks").style.display="block"; //show
 
 
       })
